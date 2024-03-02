@@ -60,3 +60,16 @@ func _physics_process(delta):
 			
 	$Weapon.rotation.y = lerp_angle($Weapon.rotation.y, lookdir, 0.1)
 
+
+	var mouse_position = get_viewport().get_mouse_position()
+	
+	var ray_origin = Vector3()
+	var ray_target = Vector3()
+	
+	ray_origin = $Camera3D.project_ray_origin(mouse_position)
+	ray_target = ray_origin + $Camera3D.project_ray_origin(mouse_position) * 2000
+	
+	var space_state = get_world_3d().direct_space_state
+	var intersection = space_state.intersect_ray(ray_origin)
+	
+	
