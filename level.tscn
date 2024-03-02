@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cisvtotvejmik"]
+
+[ext_resource type="PackedScene" uid="uid://1ounb6wodf45" path="res://Player.tscn" id="1_6hkey"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h77yq"]
+size = Vector2(25, 25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3wwy"]
+albedo_color = Color(0, 0.435294, 0, 1)
+
+[node name="Level" type="Node3D"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+use_collision = true
+mesh = SubResource("PlaneMesh_h77yq")
+material = SubResource("StandardMaterial3D_g3wwy")
+
+[node name="Player" parent="." instance=ExtResource("1_6hkey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -1)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 4, 0)
