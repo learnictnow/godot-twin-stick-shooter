@@ -7,6 +7,8 @@ const JUMP_VELOCITY = 4.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var weapon_dir_prev = 0
+var look_dir_prev = 0
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -35,15 +37,26 @@ func _physics_process(delta):
 		var lookdir = atan2(-velocity.x, -velocity.z)
 		
 			
-		$Body.rotation.y = lerp($Body.rotation.y, lookdir, 0.1)
+		$Body.rotation.y = lerp_angle($Body.rotation.y, lookdir, 0.1)
 		
 		$UI/VBoxContainer/LabelRotation.text = str(rad_to_deg($Body.rotation.y))
 		$UI/VBoxContainer/LabelRotation2.text = str(rad_to_deg(lookdir))
 	
+	
 	var weapon_dir = Input.get_vector("weapon_left", "weapon_right", "weapon_up", "weapon_down")
 	
 	var lookdir = atan2(-weapon_dir.x, -weapon_dir.y)
-		
+	
+	#if weapon_dir_prev - lookdir > 0:
+	#	lookdir = -lookdir
+	
+	#$UI/VBoxContainer/InputDir.text = "Cur:  " + str(lookdir)
+	#$UI/VBoxContainer/InputDirPrev.text = "Prev: " + str(weapon_dir_prev)
+	##print("Cur:  " + str(lookdir) + " | Prev: " + str(weapon_dir_prev))
+	#if lookdir - weapon_dir_prev > 0:
+		#lookdir = -lookdir
+	
+	weapon_dir_prev = lookdir	
 			
-	$Weapon.rotation.y = lerp($Weapon.rotation.y, lookdir, 0.1)
+	$Weapon.rotation.y = lerp_angle($Weapon.rotation.y, lookdir, 0.1)
 

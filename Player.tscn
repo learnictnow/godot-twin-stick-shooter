@@ -49,6 +49,12 @@ layout_mode = 2
 [node name="LabelRotation2" type="Label" parent="UI/VBoxContainer"]
 layout_mode = 2
 
+[node name="InputDir" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="InputDirPrev" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+
 [node name="Weapon" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Weapon"]
