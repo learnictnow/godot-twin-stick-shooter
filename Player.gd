@@ -31,5 +31,19 @@ func _physics_process(delta):
 	move_and_slide()
 
 	if velocity != Vector3.ZERO:
+		
 		var lookdir = atan2(-velocity.x, -velocity.z)
+		
+			
 		$Body.rotation.y = lerp($Body.rotation.y, lookdir, 0.1)
+		
+		$UI/VBoxContainer/LabelRotation.text = str(rad_to_deg($Body.rotation.y))
+		$UI/VBoxContainer/LabelRotation2.text = str(rad_to_deg(lookdir))
+	
+	var weapon_dir = Input.get_vector("weapon_left", "weapon_right", "weapon_up", "weapon_down")
+	
+	var lookdir = atan2(-weapon_dir.x, -weapon_dir.y)
+		
+			
+	$Weapon.rotation.y = lerp($Weapon.rotation.y, lookdir, 0.1)
+
