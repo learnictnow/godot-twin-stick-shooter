@@ -1,22 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://cisvtotvejmik"]
+[gd_scene load_steps=3 format=3 uid="uid://dkb7eb07ydlu0"]
 
-[ext_resource type="PackedScene" uid="uid://1ounb6wodf45" path="res://Player.tscn" id="1_6hkey"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_meqnq"]
+albedo_color = Color(0.352941, 0.27451, 0.160784, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_h77yq"]
-size = Vector2(25, 25)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3wwy"]
-albedo_color = Color(0, 0.435294, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6f25"]
+albedo_color = Color(0, 0.2, 0.239216, 1)
 
 [node name="Level" type="Node3D"]
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+[node name="Floor" type="CSGBox3D" parent="."]
 use_collision = true
-mesh = SubResource("PlaneMesh_h77yq")
-material = SubResource("StandardMaterial3D_g3wwy")
+size = Vector3(25, 1, 25)
+material = SubResource("StandardMaterial3D_meqnq")
 
-[node name="Player" parent="." instance=ExtResource("1_6hkey")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -1)
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.75785, 0, -7.89443)
+radius = 3.0
+material = SubResource("StandardMaterial3D_l6f25")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 4, 0)
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27906, 0, 8.76916)
+radius = 3.0
+material = SubResource("StandardMaterial3D_l6f25")
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.83111, 0, -0.404757)
+radius = 3.0
+material = SubResource("StandardMaterial3D_l6f25")

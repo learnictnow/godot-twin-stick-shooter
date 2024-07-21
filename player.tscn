@@ -1,0 +1,98 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbudob2hcumqm"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_rj8pe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25rym"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5jvqb"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onf7o"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i8133"]
+size = Vector3(1, 1.3, 1.2)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_rj8pe")
+
+[node name="Body" type="CSGBox3D" parent="."]
+material = SubResource("StandardMaterial3D_25rym")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
+light_energy = 10.0
+spot_range = 10.0
+spot_angle = 20.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
+light_energy = 10.0
+spot_range = 10.0
+spot_angle = 20.0
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Body"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, -0.5)
+height = 1.0
+material = SubResource("StandardMaterial3D_5jvqb")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Body"]
+transform = Transform3D(-5.73206e-15, 1.31134e-07, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, 1.31134e-07, 0, 0, 0.5)
+radius = 0.2
+height = 0.5
+cone = true
+material = SubResource("StandardMaterial3D_onf7o")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Body"]
+transform = Transform3D(-5.73206e-15, 1.31134e-07, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, 1.31134e-07, 0.3, 0.3, 0.5)
+radius = 0.2
+height = 0.5
+cone = true
+material = SubResource("StandardMaterial3D_onf7o")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Body"]
+transform = Transform3D(-5.73206e-15, 1.31134e-07, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, 1.31134e-07, 0.3, -0.3, 0.5)
+radius = 0.2
+height = 0.5
+cone = true
+material = SubResource("StandardMaterial3D_onf7o")
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Body"]
+transform = Transform3D(-5.73206e-15, 1.31134e-07, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, 1.31134e-07, -0.3, 0.3, 0.5)
+radius = 0.2
+height = 0.5
+cone = true
+material = SubResource("StandardMaterial3D_onf7o")
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Body"]
+transform = Transform3D(-5.73206e-15, 1.31134e-07, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, 1.31134e-07, -0.3, -0.3, 0.5)
+radius = 0.2
+height = 0.5
+cone = true
+material = SubResource("StandardMaterial3D_onf7o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -0.1)
+shape = SubResource("BoxShape3D_i8133")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 11, 2)
+
+[node name="Turret" type="Marker3D" parent="."]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Turret"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+radius = 0.4
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Turret/CSGSphere3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.25, -0.3)
+radius = 0.1
+height = 1.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Turret/CSGSphere3D/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+light_color = Color(1, 0.372549, 1, 1)
+light_energy = 15.0
+spot_range = 25.0
+spot_angle = 10.0
